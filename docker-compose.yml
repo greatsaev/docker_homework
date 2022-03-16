@@ -1,15 +1,9 @@
 version: '2'
 
 services:
-  frontend:
-    build: ./frontend
-    ports:
-      - 8080:80
-    networks:
-      - front
-      - back
   database:
     image: postgres:alpine3.14
+    hostname: database
     environment:
       - POSTGRES_USER=django
       - POSTGRES_PASSWORD=django
@@ -18,14 +12,29 @@ services:
   
   backend:
     build: ./lib_catalog
+    hostname: backend
     networks:
       - back
+      - front
+    ports:
+      - 8000:8000
     depends_on:
       - database
 
+  web:
+    build: ./frontend
+    ports:
+      - 8080:80
+    networks:
+      - front
+    depends_on:
+      - backend
+
 networks:
   back:
+    name: back
     driver: bridge  
   front:
+    name: front
     driver: bridge
 
