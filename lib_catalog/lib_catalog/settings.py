@@ -121,7 +121,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -137,6 +137,7 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
+    "http://*",
 ]
 
 FIXTURES_DIRS = os.path.join(BASE_DIR, 'catalog/fixtures')
