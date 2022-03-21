@@ -7,6 +7,7 @@
 ## Tune requirements.txt
 
 `lxml==4.5.2`
+
 `psycopg2-binary>=2.8.6`
 
 ## Create app.sh
@@ -19,7 +20,7 @@ python manage.py runserver 0.0.0.0:8000
 # RUN
 `docker network create backend`
 
-`docker run --name database -e POSTGRES_PASSWORD=django -e POSTGRES_USER=django -p 5432:5432 --network backend  -d postgres:alpine3.14`
+`docker run --name database -e POSTGRES_PASSWORD=django -e POSTGRES_USER=django --network backend  -d postgres:alpine3.14`
 
 `docker run -d -p 8000:8000 --name backend --network backend backend`
 
